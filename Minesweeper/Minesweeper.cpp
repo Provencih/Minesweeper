@@ -1,7 +1,6 @@
 ﻿// Minesweeper.cpp : 此文件包含 "main" 函数。程序执行将在此处开始并结束。
 //
 
-
 #include <iostream>
 #include <iomanip>
 #include <vector>
@@ -22,6 +21,7 @@ private:
     int recurCnt = 0;
     bool defeat = false;
     bool victory = false;
+
     void DFS(vector<vector<char>>&, int, int);
     vector<vector<char>> updateBoard(vector<vector<char>>&, int, int);
     vector<vector<char>> init();
