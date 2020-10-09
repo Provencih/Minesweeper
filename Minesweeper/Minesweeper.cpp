@@ -127,29 +127,20 @@ vector<vector<char>> Minesweeper::init()
 	for (int i = 0; i < n; i++)
 	{
 		index = rand() % (x * y - 1 - i);
-		mine[i] = total[index];
-		//cout << mine[i] << endl;
+		mine[i] = total[index]; //随机选雷，并记录雷的位置
+		//避免重复
 		temp = total[index];
 		total[index] = total[x * y - 1 - i];
 		total[x * y - 1 - i] = temp;
 	}
 	vector<vector<char>> board;
 	vector<char> subBoard;
-	for (int i = 0; i < x; i++)
-	{
-		for (int j = 0; j < y; j++)
-			subBoard.push_back('E');
+    for (int j = 0; j < y; j++)
+        subBoard.push_back('E');
+    for (int i = 0; i < x; i++)
 		board.push_back(subBoard);
-		subBoard.clear();
-	}
 	for (int i = 0; i < n; i++)
 		board[mine[i] / y][mine[i] % y] = 'M';
-	//for (int i = 0; i < board.size(); i++)
-	//{
-	//	for (int j = 0; j < board[i].size(); j++)
-	//		cout << board[i][j] << " ";
-	//	cout << endl;
-	//}
 	delete[] mine;
 	delete[] total;
 	return board;
