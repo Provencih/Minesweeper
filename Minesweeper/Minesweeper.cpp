@@ -1,4 +1,4 @@
-﻿#include <iostream>
+#include <iostream>
 #include <iomanip>
 #include <vector>
 #include <stdio.h>
@@ -8,8 +8,7 @@
 
 using namespace std;
 
-class Minesweeper
-{
+class Minesweeper {
 private:
     int ROW, COL, N;
 
@@ -27,8 +26,7 @@ public:
     void interact();
 };
 
-int main()
-{
+int main() {
     int row, col, n;
     cout << "请输入地图行数（1 - 50 的整数）：" << endl;
     cin >> row;
@@ -52,8 +50,7 @@ int main()
     return 0;
 }
 
-void Minesweeper::DFS(vector<vector<char>>& board, int x, int y)
-{
+void Minesweeper::DFS(vector<vector<char>>& board, int x, int y) {
     if (board[0].size() * board.size() == 1) {
         board[0][0] = 'B';
         return;
@@ -63,7 +60,7 @@ void Minesweeper::DFS(vector<vector<char>>& board, int x, int y)
         return;
     }
     //两种逻辑
-    //1. 如果当前位置（即输入的参数x和y）周围有雷计数（不管有没有雷），如果计数结果非零，则修改本位置为数字
+    //1. 如果当前位置（即输入的参数  x和 y）周围有雷计数（不管有没有雷），如果计数结果非零，则修改本位置为数字
     //2. 如果计数结果为0，则将修改本位置为B，并对周围8内未被挖出的格子进行递归执行1和2
     int sx, sy;
     int cnt = 0;
@@ -93,8 +90,7 @@ void Minesweeper::DFS(vector<vector<char>>& board, int x, int y)
     return;
 }
 
-vector<vector<char>> Minesweeper::updateBoard(vector<vector<char>>& board, int x, int y)
-{
+vector<vector<char>> Minesweeper::updateBoard(vector<vector<char>>& board, int x, int y) {
     if (board[x][y] == 'M') { //踩雷，直接人没了
         board[x][y] += 11;
         defeat = true;
@@ -104,8 +100,7 @@ vector<vector<char>> Minesweeper::updateBoard(vector<vector<char>>& board, int x
     return board;
 }
 
-vector<vector<char>> Minesweeper::init()
-{
+vector<vector<char>> Minesweeper::init() {
     srand(time(0));
     int x = Minesweeper::ROW;
     int y = Minesweeper::COL;
@@ -140,8 +135,7 @@ vector<vector<char>> Minesweeper::init()
     return board;
 }
 
-void Minesweeper::interact()
-{
+void Minesweeper::interact() {
     int x = Minesweeper::ROW;
     int y = Minesweeper::COL;
     int n = Minesweeper::N;
